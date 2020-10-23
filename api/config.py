@@ -8,6 +8,9 @@ load_dotenv(dotenv_path=path.join(basedir, '.env'))
 
 
 class Config:
+    """
+
+    """
     DEBUG = False
     TESTING = False
     SECRET_KEY = environ.get('SECRET_KEY')
