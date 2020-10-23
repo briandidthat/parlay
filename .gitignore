@@ -1,3 +1,9 @@
+## JS-Files
+
 node_modules
 .env
 .DS_Store
+
+
+## Python Files
+/api/env
