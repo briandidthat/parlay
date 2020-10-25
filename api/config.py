@@ -9,7 +9,8 @@ load_dotenv(dotenv_path=path.join(basedir, '.env'))
 
 class Config:
     """
-
+    Base Config class will contain most of the basic configuration attributes and will be changed accordingly
+    based on the environment.
     """
     DEBUG = False
     TESTING = False
