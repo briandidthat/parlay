@@ -10,7 +10,7 @@ input {
 }
 
 .error {
-    color: crimson;
+    color: rgb(148, 31, 54);
     size: 4pt;
     text-align: center;
 }
