@@ -1,6 +1,7 @@
 import React from "react";
 import { Formik, Form, useField } from "formik";
 import { RegisterSchema, LoginSchema } from "../../utils/Validation";
+import "./auth.css";
 
 const CustomField = ({ label, ...props }) => {
   const [field, meta, helpers] = useField(props);
@@ -33,14 +34,18 @@ export function LoginForm() {
         {() => (
           <Form>
             <CustomField
+              className="field"
               name="username"
               component={CustomField}
-              placeholder="text"
+              placeholder="username"
+              type="username"
             />
             <CustomField
+              className="field"
               name="password"
               component={CustomField}
               placeholder="password"
+              type="password"
             />
           </Form>
         )}
@@ -64,19 +69,32 @@ export function RegistrationForm() {
         {() => (
           <Form>
             <CustomField
+              label="Email"
               name="email"
               component={CustomField}
               placeholder="email"
+              type="email"
             />
             <CustomField
+              label="Username"
               name="username"
               component={CustomField}
-              placeholder="text"
+              placeholder="username"
+              type="text"
             />
             <CustomField
+              label="Password"
               name="password"
               component={CustomField}
               placeholder="password"
+              type="password"
+            />
+            <CustomField
+              label="Confirm Password"
+              name="confirm"
+              component={CustomField}
+              placeholder="confirm"
+              type="password"
             />
           </Form>
         )}

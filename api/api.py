@@ -5,15 +5,15 @@ from views import auth
 # instantiate db
 db = SQLAlchemy()
 
-
 def create_app():
     app = Flask(__name__)
     app.config.from_object('config.DevelopmentConfig')
 
-    # register auhtentication blueprint
+    db.init_app(app)
+    # register authentication blueprint
     app.register_blueprint(auth)
 
     return app
 
-if __name__ == "__main__":
+if __name__ == "__main__": 
    app = create_app()
