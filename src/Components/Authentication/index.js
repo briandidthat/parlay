@@ -58,7 +58,7 @@ export function RegistrationForm() {
   return (
     <>
       <Formik
-        initialValues={{ email: "", username: "", password: "" }}
+        initialValues={{ email: "", username: "", password: "", confirmPassword: "" }}
         validationSchema={RegisterSchema}
         validateOnChange={true}
         onSubmit={(values, actions) => {
@@ -91,7 +91,7 @@ export function RegistrationForm() {
             />
             <CustomField
               label="Confirm Password"
-              name="confirm"
+              name="confirmPassword"
               component={CustomField}
               placeholder="confirm"
               type="password"
