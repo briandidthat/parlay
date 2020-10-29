@@ -4,7 +4,7 @@ import { RegisterSchema, LoginSchema } from "../../utils/Validation";
 import "./auth.css";
 
 const CustomField = ({ label, ...props }) => {
-  const [field, meta, helpers] = useField(props);
+  const [field, meta] = useField(props);
 
   return (
     <>
