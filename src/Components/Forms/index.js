@@ -1,8 +1,8 @@
 import React from "react";
-import { Formik, Form } from "formik";
-import { CustomField } from "../Input";
+import { Formik, Form, Field } from "formik";
 import { RegisterSchema, LoginSchema } from "../../utils/Validation";
 import { Col, Container, Row } from "react-bootstrap";
+import "./style.css";
 
 export function LoginForm() {
   return (
@@ -15,7 +15,7 @@ export function LoginForm() {
         actions.setSubmitting(false);
       }}
     >
-      {() => (
+      {({ errors, touched }) => (
         <Container fluid style={{ textAlign: "center" }}>
           <Form>
             <Row>
@@ -25,24 +25,30 @@ export function LoginForm() {
             </Row>
             <Row>
               <Col>
-                <CustomField
-                  className="field"
+                <label htmlFor="username">Username</label>
+                <Field
                   name="username"
-                  component={CustomField}
                   placeholder="username"
-                  type="username"
+                  type="text"
+                  id="username"
                 />
+                {touched.username && errors.username ? (
+                  <div className="error">{errors.username}</div>
+                ) : null}
               </Col>
             </Row>
             <Row>
               <Col>
-                <CustomField
-                  className="field"
+                <label htmlFor="password">Password</label>
+                <Field
                   name="password"
-                  component={CustomField}
                   placeholder="password"
                   type="password"
+                  id="password"
                 />
+                {touched.password && errors.password ? (
+                  <div className="error">{errors.password}</div>
+                ) : null}
               </Col>
             </Row>
           </Form>
@@ -68,8 +74,8 @@ export function RegistrationForm() {
         actions.setSubmitting(false);
       }}
     >
-      {() => (
-        <Container fluid style={{ textAlign: "center" }}>
+      {({ errors, touched }) => (
+        <Container fluid style={{ textAlign: "center", alignItems: "center" }}>
           <Form>
             <Row>
               <Col>
@@ -78,46 +84,59 @@ export function RegistrationForm() {
             </Row>
             <Row>
               <Col>
-                <CustomField
-                  label="Email"
+                <label htmlFor="email"> Email</label>
+                <Field
                   name="email"
-                  component={CustomField}
                   placeholder="email"
                   type="email"
+                  id="email"
                 />
+                {touched.email && errors.email ? (
+                  <div className="error">{errors.email}</div>
+                ) : null}
               </Col>
             </Row>
             <Row>
               <Col>
-                <CustomField
-                  label="Username"
+                <label htmlFor="username">Username</label>
+                <Field
                   name="username"
-                  component={CustomField}
                   placeholder="username"
                   type="text"
+                  id="password"
                 />
+                {touched.username && errors.username ? (
+                  <div className="error">{errors.username}</div>
+                ) : null}
               </Col>
             </Row>
             <Row>
               <Col>
-                <CustomField
-                  label="Password"
+                <label htmlFor="password">Password</label>
+                <Field
                   name="password"
-                  component={CustomField}
                   placeholder="password"
                   type="password"
+                  id="password"
                 />
+                {touched.password && errors.password ? (
+                  <div className="error">{errors.password}</div>
+                ) : null}
               </Col>
             </Row>
             <Row>
               <Col>
-                <CustomField
+                <label htmlFor="confirm">Confirm</label>
+                <Field
                   label="Confirm"
                   name="confirmPassword"
-                  component={CustomField}
                   placeholder="confirm"
                   type="password"
+                  id="confirm"
                 />
+                {touched.confirmPassword && errors.confirmPassword ? (
+                  <div className="error">{errors.confirmPassword}</div>
+                ) : null}
               </Col>
             </Row>
           </Form>
