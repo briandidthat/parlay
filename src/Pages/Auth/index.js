@@ -7,7 +7,7 @@ export default function Authentication() {
 
   return (
     <div className="col d-flex justify-content-center">
-      <Card>
+      <Card className="text-center">
         <Card.Body>
         {login ? <LoginForm /> : <RegistrationForm />}
         </Card.Body>
