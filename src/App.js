@@ -1,13 +1,23 @@
 import React from "react";
-import { BrowserRouter as Router } from "react-router-dom";
-import { AppRoutes } from "./utils/Routes";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Auth, Home, Error } from "./Pages";
+import { Footer, Header } from "./Components/Navbar";
 import "./App.css";
 
 function App() {
   return (
-    <Router>
-      <AppRoutes />
-    </Router>
+    <>
+      <Header />
+      <div id="content">
+        <Router>
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/auth" component={Auth} />
+          </Switch>
+        </Router>
+      </div>
+      <Footer />
+    </>
   );
 }
 
