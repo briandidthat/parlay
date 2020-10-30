@@ -1,4 +1,3 @@
-from views import auth
 from functools import wraps
 from flask import Flask, jsonify
 from flask_sqlalchemy import SQLAlchemy
@@ -29,8 +28,12 @@ def create_app():
     def user_identity_lookup(user):
         return user.username
 
-    # register authentication blueprint
+    # import views (blueprints) containing routes
+    from views import auth, main
+
+    # register blueprints
     app.register_blueprint(auth)
+    app.register_blueprint(main)
 
     return app
 

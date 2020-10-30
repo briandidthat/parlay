@@ -47,7 +47,8 @@ def register():
     return jsonify(access_token=access_token), 201
 
 
-@auth.errorhandler(InvalidUsage):
+# define and register custom error handler
+@auth.errorhandler(InvalidUsage)
 def invalid_usage(error):
     response = jsonify(error.to_dict())
     response.status_code = error.status_code
