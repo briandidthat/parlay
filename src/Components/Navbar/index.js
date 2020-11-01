@@ -14,6 +14,7 @@ export const Header = () => (
   </Navbar>
 );
 
+
 export const Footer = () => (
   <Navbar fixed="bottom" bg="dark" variant="dark">
     <Navbar.Text>&copy; Parlay 2020</Navbar.Text>
