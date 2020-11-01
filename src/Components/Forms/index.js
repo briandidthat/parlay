@@ -1,7 +1,7 @@
 import React from "react";
 import { Formik, Form, Field } from "formik";
 import { RegisterSchema, LoginSchema } from "../../utils/Validation";
-import { Col, Container, Row } from "react-bootstrap";
+import { Button, Col, Container, Row } from "react-bootstrap";
 import "./style.css";
 
 export function LoginForm() {
@@ -18,11 +18,6 @@ export function LoginForm() {
       {({ errors, touched }) => (
         <Container fluid style={{ textAlign: "center" }}>
           <Form>
-            <Row>
-              <Col>
-                <h1>Login</h1>
-              </Col>
-            </Row>
             <Row>
               <Col>
                 <label htmlFor="username">Username</label>
@@ -51,6 +46,11 @@ export function LoginForm() {
                 ) : null}
               </Col>
             </Row>
+            <Row>
+              <Col>
+                <Button type="submit" value="Login" />
+              </Col>
+            </Row>
           </Form>
         </Container>
       )}
@@ -75,16 +75,11 @@ export function RegistrationForm() {
       }}
     >
       {({ errors, touched }) => (
-        <Container fluid style={{ textAlign: "center", alignItems: "center" }}>
+        <Container fluid>
           <Form>
             <Row>
               <Col>
-                <h1>Register</h1>
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                <label htmlFor="email"> Email</label>
+                <label htmlFor="email">Email</label>
                 <Field
                   name="email"
                   placeholder="email"
@@ -137,6 +132,14 @@ export function RegistrationForm() {
                 {touched.confirmPassword && errors.confirmPassword ? (
                   <div className="error">{errors.confirmPassword}</div>
                 ) : null}
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <Button type="submit" variant="primary" value="Register" />
+              </Col>
+              <Col>
+                <Button type="button" variant="primary" value="Login" />
               </Col>
             </Row>
           </Form>

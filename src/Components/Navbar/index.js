@@ -2,8 +2,8 @@ import React from "react";
 import { Navbar, Nav } from "react-bootstrap";
 
 export const Header = () => (
-  <Navbar fixed="top" bg="dark" variant="dark">
-    <Navbar.Brand href="#home">Parlay</Navbar.Brand>
+  <Navbar fixed="top" bg="dark" variant="dark" expand="lg">
+    <Navbar.Brand>Parlay</Navbar.Brand>
     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
     <Navbar.Collapse className="justify-content-end" id="responsive-navbar-nav">
       <Nav className="mr-auto">
@@ -14,10 +14,9 @@ export const Header = () => (
   </Navbar>
 );
 
+
 export const Footer = () => (
   <Navbar fixed="bottom" bg="dark" variant="dark">
-    <Navbar.Text style={{ textAlign: "center" }}>
-      &copy; Parlay 2020
-    </Navbar.Text>
+    <Navbar.Text>&copy; Parlay 2020</Navbar.Text>
   </Navbar>
 );
