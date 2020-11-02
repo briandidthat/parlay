@@ -46,9 +46,12 @@ export function LoginForm() {
                 ) : null}
               </Col>
             </Row>
+            <br />
             <Row>
               <Col>
-                <Button type="submit" value="Login" />
+                <Button type="submit">
+                  Login
+                </Button>
               </Col>
             </Row>
           </Form>
@@ -134,12 +137,12 @@ export function RegistrationForm() {
                 ) : null}
               </Col>
             </Row>
+            <br />
             <Row>
               <Col>
-                <Button type="submit" variant="primary" value="Register" />
-              </Col>
-              <Col>
-                <Button type="button" variant="primary" value="Login" />
+                <Button type="submit" variant="primary">
+                  Register
+                </Button>
               </Col>
             </Row>
           </Form>
