@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { RegistrationForm, LoginForm } from "../../Components/Forms";
 
 export default function Authentication() {
-  const [login] = useState(false);
+  const [login] = useState(true);
 
   return (
     <div className="col d-flex justify-content-center">
