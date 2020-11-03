@@ -16,6 +16,10 @@ export const Header = () => (
 
 export const Footer = () => (
   <Navbar fixed="bottom" bg="dark" variant="dark">
-    <Navbar.Text>&copy; Parlay 2020</Navbar.Text>
+    <Nav justify className="m-auto">
+      <Nav.Item>
+        <Navbar.Brand>&copy; Parlay 2020</Navbar.Brand>
+      </Nav.Item>
+    </Nav>
   </Navbar>
 );
