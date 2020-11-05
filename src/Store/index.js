@@ -1,2 +1,2 @@
 import create from "zustand";
-import { redux } from "zustand/middleware";
+import { devtools, redux } from "zustand/middleware";
