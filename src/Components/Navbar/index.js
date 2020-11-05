@@ -1,9 +1,9 @@
-import React, { useReducer } from "react";
+import React from "react";
 import { Navbar, Nav } from "react-bootstrap";
-import Reducer, { initialState } from "../../Store/reducers/auth";
+import { useStore, dispatch } from "../../Store";
 
 export const Header = () => {
-  const [state, dispatch] = useReducer(Reducer, initialState);
+  const state = useStore();
 
   return (
     <Navbar fixed="top" bg="dark" variant="dark" expand="lg">

@@ -23,6 +23,14 @@ export const login = (user) => {
   };
 };
 
+export const logout = () => {
+  if (localStorage.getItem("token")) {
+    localStorage.removeItem("token");
+  }
+};
+
+
+
 export const register = (user) => {
   return async (dispatch) => {
     try {
