@@ -4,7 +4,7 @@ import { RegistrationForm, LoginForm } from "../../Components/Forms";
 
 export default function Authentication() {
   const [login] = useState(false);
-
+  console.log("AUTHPAGE RENDERING...")
   return (
     <div className="col d-flex justify-content-center">
       <Card className="text-center">

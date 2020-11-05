@@ -5,6 +5,7 @@ import { useState } from "../../Store/context/user-context";
 export const Header = () => {
   const [state, dispatch] = useState();
 
+  console.log("HEADER RENDERING...");
   return (
     <Navbar fixed="top" bg="dark" variant="dark" expand="lg">
       <Navbar.Brand>Parlay</Navbar.Brand>

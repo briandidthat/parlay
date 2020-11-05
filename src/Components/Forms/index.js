@@ -60,6 +60,7 @@ export function LoginForm() {
 }
 
 export function RegistrationForm() {
+  console.log("REGISTERFORM RENDERING...");
   return (
     <Formik
       initialValues={{
@@ -100,7 +101,7 @@ export function RegistrationForm() {
                   name="username"
                   placeholder="username"
                   type="text"
-                  id="password"
+                  id="username"
                 />
                 {touched.username && errors.username ? (
                   <div className="error">{errors.username}</div>
