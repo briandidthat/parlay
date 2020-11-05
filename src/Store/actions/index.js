@@ -1,19 +1,46 @@
 import * as ACTIONS from "../actions/types";
+import API from "../../utils/API";
 
 export const login = (user) => {
   return async (dispatch) => {
-    dispatch({ type: ACTIONS.LOGIN });
+    try {
+      dispatch({ type: ACTIONS.LOGIN });
+      let response = await API.login(user);
 
-    let login = await fetch("/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(user),
-    });
+      if (response.status === "200") {
+        response = response.json();
+        dispatch({
+          type: ACTIONS.LOGIN_SUCCESS,
+          payload: response,
+        });
+      }
+    } catch (err) {
+      dispatch({
+        type: ACTIONS.LOGIN_ERROR,
+        payload: { message: err.message },
+      });
+    }
+  };
+};
 
-    if (login.status === "200") {
-        dispatch({ type: ACTIONS.LOGIN_SUCCESS, payload: login.json() });
+export const register = (user) => {
+  return async (dispatch) => {
+    try {
+      dispatch({ type: ACTIONS.REGISER });
+      let response = await API.register(user);
+
+      if (response.status === "200") {
+        response = response.json();
+        dispatch({
+          type: ACTIONS.REGISTER_SUCCESS,
+          payload: response,
+        });
+      }
+    } catch (err) {
+      dispatch({
+        type: ACTIONS.REGISTER_ERROR,
+        payload: { message: err.message },
+      });
     }
   };
 };
