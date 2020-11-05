@@ -1,6 +1,6 @@
 import React, { useReducer } from "react";
 import { Navbar, Nav } from "react-bootstrap";
-import Reducer, { initialState } from "../../Store/reducers/auth";
+import Reducer, { initialState } from "../../Store/reducer/auth";
 
 export const Header = () => {
   const [state, dispatch] = useReducer(Reducer, initialState);
