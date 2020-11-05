@@ -4,21 +4,24 @@ import { PrivateRoute } from "./utils/Helpers";
 import { Auth, Home, Error } from "./Pages";
 import { Footer, Header } from "./Components/Navbar";
 import "./App.css";
+import { StateProvider } from "./Store/context/user-context";
 
 function App() {
   return (
     <>
-      <Header />
-      <div id="content">
-        <Router>
-          <Switch>
-            <PrivateRoute exact path="/" component={Home} />
-            <Route exact path="/auth" component={Auth} />
-            <Route component={Error} />
-          </Switch>
-        </Router>
-      </div>
-      <Footer />
+      <StateProvider>
+        <Header />
+        <div id="content">
+          <Router>
+            <Switch>
+              <PrivateRoute exact path="/" component={Home} />
+              <Route exact path="/auth" component={Auth} />
+              <Route component={Error} />
+            </Switch>
+          </Router>
+        </div>
+        <Footer />
+      </StateProvider>
     </>
   );
 }

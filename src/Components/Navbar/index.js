@@ -1,9 +1,9 @@
-import React, { useReducer } from "react";
+import React from "react";
 import { Navbar, Nav } from "react-bootstrap";
-import Reducer, { initialState } from "../../Store/reducer/auth";
+import { useState } from "../../Store/context/user-context";
 
 export const Header = () => {
-  const [state, dispatch] = useReducer(Reducer, initialState);
+  const [state, dispatch] = useState();
 
   return (
     <Navbar fixed="top" bg="dark" variant="dark" expand="lg">
@@ -14,6 +14,7 @@ export const Header = () => {
         id="responsive-navbar-nav"
       >
         <Nav className="justify-content-end">
+          {state.username}
           {state.isAuthenticated ? (
             <Nav.Link
               eventKey="link1"
