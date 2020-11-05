@@ -18,3 +18,13 @@ export const PrivateRoute = ({ component, ...rest }) => (
     }
   />
 );
+
+
+
+export const getRoles = (token) => {
+  let data = token.split('.')[1]; 
+  let decoded = window.atob(data);
+  let userClaims = JSON.parse(decoded).user_claims;
+
+  return userClaims.roles;
+}

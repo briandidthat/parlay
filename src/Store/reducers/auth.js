@@ -1,12 +1,5 @@
-import {
-  LOGIN,
-  LOGIN_ERROR,
-  LOGIN_SUCCESS,
-  LOGOUT,
-  REGISER,
-  REGISTER_ERROR,
-  REGISTER_SUCCESS,
-} from "../actions/types";
+import { getRoles } from "../../utils/Helpers";
+import * as ACTIONS from "../actions/types";
 
 export const initialState = {
   isAuthenticated: !!localStorage.getItem("token"),
@@ -17,46 +10,46 @@ export const initialState = {
 
 export default function Reducer(state = initialState, action) {
   switch (action.type) {
-    case LOGIN:
+    case ACTIONS.LOGIN:
       return {
         isLoading: true,
       };
-    case LOGIN_ERROR:
+    case ACTIONS.LOGIN_ERROR:
       return {
         isAuthenticated: false,
         isLoading: false,
         error: true,
         errorMsg: action.payload.message,
       };
-    case LOGIN_SUCCESS:
+    case ACTIONS.LOGIN_SUCCESS:
       return {
         isAuthenticated: true,
         isLoading: false,
         username: action.payload.username,
-        roles: action.payload.roles
+        roles: getRoles(action.payload.token),
       };
-    case LOGOUT:
+    case ACTIONS.LOGOUT:
       return {
         isAuthenticated: false,
         isLoading: false,
       };
-    case REGISER:
+    case ACTIONS.REGISTER:
       return {
         isLoading: true,
       };
-    case REGISTER_ERROR:
+    case ACTIONS.REGISTER_ERROR:
       return {
         isAuthenticated: false,
         isLoading: false,
         error: true,
         errorMsg: action.payload.message,
       };
-    case REGISTER_SUCCESS:
+    case ACTIONS.REGISTER_SUCCESS:
       return {
         isAuthenticated: true,
         isLoading: false,
         username: action.payload.username,
-        roles: [...action.payload.roles, "USER"]
+        roles: getRoles(action.payload.token),
       };
     default:
       return state;
