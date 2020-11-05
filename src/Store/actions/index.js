@@ -29,8 +29,6 @@ export const logout = () => {
   }
 };
 
-
-
 export const register = (user) => {
   return async (dispatch) => {
     try {
