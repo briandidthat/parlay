@@ -42,7 +42,7 @@ def register():
     user.roles.append(role)
     db.session.commit()
 
-    access_token = create_access_token(username)
+    access_token = create_access_token(user)
 
     return jsonify(access_token=access_token), 201
 

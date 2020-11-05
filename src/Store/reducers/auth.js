@@ -11,6 +11,7 @@ import {
 export const initialState = {
   isAuthenticated: !!localStorage.getItem("token"),
   username: "",
+  roles: [],
   isLoading: false,
 };
 
@@ -32,6 +33,7 @@ export default function Reducer(state = initialState, action) {
         isAuthenticated: true,
         isLoading: false,
         username: action.payload.username,
+        roles: action.payload.roles
       };
     case LOGOUT:
       return {
@@ -54,6 +56,7 @@ export default function Reducer(state = initialState, action) {
         isAuthenticated: true,
         isLoading: false,
         username: action.payload.username,
+        roles: [...action.payload.roles, "USER"]
       };
     default:
       return state;

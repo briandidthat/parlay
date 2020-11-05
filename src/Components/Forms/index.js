@@ -11,7 +11,7 @@ export function LoginForm() {
       validationSchema={LoginSchema}
       validateOnChange={true}
       onSubmit={(values, actions) => {
-        alert(JSON.stringify(values, null, 2));
+        alert(JSON.stringify(values));
         actions.setSubmitting(false);
       }}
     >
@@ -49,9 +49,7 @@ export function LoginForm() {
             <br />
             <Row>
               <Col>
-                <Button type="submit">
-                  Login
-                </Button>
+                <Button type="submit">Login</Button>
               </Col>
             </Row>
           </Form>
@@ -73,7 +71,8 @@ export function RegistrationForm() {
       validationSchema={RegisterSchema}
       validateOnChange={true}
       onSubmit={(values, actions) => {
-        alert(JSON.stringify(values, null, 2));
+        alert(JSON.stringify(values));
+        // let { email, username, password } = values;
         actions.setSubmitting(false);
       }}
     >

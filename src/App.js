@@ -6,7 +6,6 @@ import { Footer, Header } from "./Components/Navbar";
 import "./App.css";
 
 function App() {
-  
   return (
     <>
       <Header />
