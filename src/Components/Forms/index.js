@@ -51,7 +51,7 @@ export function LoginForm({ dispatch }) {
             <br />
             <Row>
               <Col>
-                <Button type="submit">Login</Button>
+                <Button type="submit" variant="dark">Login</Button>
               </Col>
             </Row>
           </Form>
@@ -143,7 +143,7 @@ export function RegistrationForm({ dispatch }) {
             <br />
             <Row>
               <Col>
-                <Button type="submit" variant="primary">
+                <Button type="submit" variant="dark">
                   Register
                 </Button>
               </Col>

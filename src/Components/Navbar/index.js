@@ -17,17 +17,12 @@ export const Header = () => {
       >
         <Nav className="justify-content-end">
           {state.isAuthenticated ? (
-            <Nav.Link
-              eventKey="link1"
-              onClick={() => logout(dispatch)}
-            >
+            <Nav.Link eventKey="link1" onClick={() => logout(dispatch)}>
               Logout
             </Nav.Link>
-          ) : (
-            <Nav.Link eventKey="link1">Register</Nav.Link>
-          )}
+          ) : null}
         </Nav>
-      </Navbar.Collapse>   
+      </Navbar.Collapse>
     </Navbar>
   );
 };
