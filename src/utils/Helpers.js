@@ -24,7 +24,9 @@ export const storeToken = (token) => {
 };
 
 export const clearToken = () => {
-  localStorage.removeItem("token");
+  if (localStorage.getItem("token")) {
+    localStorage.removeItem("token");
+  };
 };
 
 export const getUserClaims = (token) => {

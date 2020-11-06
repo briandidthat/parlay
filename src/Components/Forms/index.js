@@ -1,6 +1,6 @@
 import React from "react";
 import { Formik, Form, Field } from "formik";
-import { login } from "../../Store/actions";
+import { login, register } from "../../Store/actions";
 import { RegisterSchema, LoginSchema } from "../../utils/Validation";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import "./style.css";
@@ -61,7 +61,7 @@ export function LoginForm({ dispatch }) {
   );
 }
 
-export function RegistrationForm({ dipatch }) {
+export function RegistrationForm({ dispatch }) {
   console.log("REGISTERFORM RENDERING...");
   return (
     <Formik
@@ -74,9 +74,10 @@ export function RegistrationForm({ dipatch }) {
       validationSchema={RegisterSchema}
       validateOnChange={true}
       onSubmit={(values, actions) => {
-        alert(JSON.stringify(values));
-        // let { email, username, password } = values;
-        actions.setSubmitting(false);
+        let { email, username, password } = values;
+        register({ email, username, password }, dispatch).then(() => {
+          actions.setSubmitting(false);
+        });
       }}
     >
       {({ errors, touched }) => (
