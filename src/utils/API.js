@@ -1,13 +1,13 @@
 import axios from "axios";
 
-function postWithToken(suffix, data, token) {
-  return axios.post(suffix, data, {
-    headers: {
-      "Content-type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-  });
-}
+// function postWithToken(suffix, data, token) {
+//   return axios.post(suffix, data, {
+//     headers: {
+//       "Content-type": "application/json",
+//       Authorization: `Bearer ${token}`,
+//     },
+//   });
+// }
 
 function postWithoutToken(suffix, data) {
   return axios.post(suffix, data, {

@@ -4,7 +4,7 @@ import { PrivateRoute } from "./utils/Helpers";
 import { Auth, Home, Error } from "./Pages";
 import { Footer, Header } from "./Components/Navbar";
 import "./App.css";
-import { StateProvider } from "./Store/context/user-context";
+import { StateProvider } from "./Store";
 
 function App() {
   return (

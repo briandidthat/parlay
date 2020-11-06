@@ -1,10 +1,12 @@
 import React from "react";
 import { Navbar, Nav } from "react-bootstrap";
-import { useState } from "../../Store/context/user-context";
+import { useState } from "../../Store";
+import { logout } from "../../Store/actions";
 
 export const Header = () => {
   const [state, dispatch] = useState();
 
+  console.log("HEADER RENDERING...");
   return (
     <Navbar fixed="top" bg="dark" variant="dark" expand="lg">
       <Navbar.Brand>Parlay</Navbar.Brand>
@@ -14,11 +16,10 @@ export const Header = () => {
         id="responsive-navbar-nav"
       >
         <Nav className="justify-content-end">
-          {state.username}
           {state.isAuthenticated ? (
             <Nav.Link
               eventKey="link1"
-              onClick={() => dispatch({ type: "LOGOUT" })}
+              onClick={() => logout(dispatch)}
             >
               Logout
             </Nav.Link>
@@ -26,7 +27,7 @@ export const Header = () => {
             <Nav.Link eventKey="link1">Register</Nav.Link>
           )}
         </Nav>
-      </Navbar.Collapse>
+      </Navbar.Collapse>   
     </Navbar>
   );
 };
