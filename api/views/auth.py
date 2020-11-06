@@ -16,7 +16,7 @@ def login():
 
     user = User.query.filter_by(username=username).first()
 
-    if not user and not check_password_hash(user.password, password):
+    if not user or not check_password_hash(user.password, password):
         raise InvalidUsage("Invalid login credentials.", status_code=401)
     
     print(user)
