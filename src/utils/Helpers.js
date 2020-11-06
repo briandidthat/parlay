@@ -5,7 +5,7 @@ export const PrivateRoute = ({ component, ...rest }) => (
   <Route
     {...rest}
     render={(props) =>
-      sessionStorage.getItem("token") ? (
+      localStorage.getItem("token") ? (
         React.createElement(component, props)
       ) : (
         <Redirect
@@ -19,12 +19,18 @@ export const PrivateRoute = ({ component, ...rest }) => (
   />
 );
 
+export const storeToken = (token) => {
+  localStorage.setItem("token", token);
+};
 
+export const clearToken = () => {
+  localStorage.removeItem("token");
+};
 
-export const getRoles = (token) => {
-  let data = token.split('.')[1]; 
+export const getUserClaims = (token) => {
+  let data = token.split(".")[1];
   let decoded = window.atob(data);
   let userClaims = JSON.parse(decoded).user_claims;
 
-  return userClaims.roles;
-}
+  return userClaims;
+};

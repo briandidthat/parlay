@@ -18,7 +18,8 @@ def login():
 
     if not user and not check_password_hash(user.password, password):
         raise InvalidUsage("Invalid login credentials.", status_code=401)
-
+    
+    print(user)
     access_token = create_access_token(user)
 
     return jsonify(access_token=access_token), 200

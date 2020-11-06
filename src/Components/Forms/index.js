@@ -1,18 +1,20 @@
 import React from "react";
 import { Formik, Form, Field } from "formik";
+import { login } from "../../Store/actions";
 import { RegisterSchema, LoginSchema } from "../../utils/Validation";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import "./style.css";
 
-export function LoginForm() {
+export function LoginForm({ dispatch }) {
   return (
     <Formik
       initialValues={{ username: "", password: "" }}
       validationSchema={LoginSchema}
       validateOnChange={true}
       onSubmit={(values, actions) => {
-        alert(JSON.stringify(values));
-        actions.setSubmitting(false);
+        login(values, dispatch).then(() => {
+          actions.setSubmitting(false);
+        });
       }}
     >
       {({ errors, touched }) => (
@@ -59,7 +61,7 @@ export function LoginForm() {
   );
 }
 
-export function RegistrationForm() {
+export function RegistrationForm({ dipatch }) {
   console.log("REGISTERFORM RENDERING...");
   return (
     <Formik
