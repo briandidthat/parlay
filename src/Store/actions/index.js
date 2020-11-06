@@ -1,6 +1,6 @@
 import * as ACTIONS from "../actions/types";
 import API from "../../utils/API";
-import { getUserClaims } from "../../utils/Helpers";
+import { clearToken, getUserClaims, storeToken } from "../../utils/Helpers";
 
 // async login function, will set localStorage token if successful
 export async function login(user, dispatch) {
@@ -16,7 +16,7 @@ export async function login(user, dispatch) {
         type: ACTIONS.LOGIN_SUCCESS,
         payload: { username, roles },
       });
-      localStorage.setItem("token", token);
+      storeToken(token);
     }
   } catch (error) {
     dispatch({
@@ -28,11 +28,9 @@ export async function login(user, dispatch) {
   }
 }
 
-// logout function will destroy 
+// logout function will destroy
 export const logout = (dispatch) => {
-  if (localStorage.getItem("token")) {
-    localStorage.removeItem("token");
-  }
+  clearToken();
   dispatch({ type: ACTIONS.LOGOUT });
 };
 
@@ -50,7 +48,7 @@ export async function register(user, dispatch) {
         type: ACTIONS.REGISTER_SUCCESS,
         payload: { username, roles },
       });
-      localStorage.setItem("token", token);
+      storeToken(token);
     }
   } catch (error) {
     dispatch({
