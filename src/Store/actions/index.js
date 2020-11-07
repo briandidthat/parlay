@@ -4,8 +4,6 @@ import { clearToken, getUserClaims, storeToken } from "../../utils/Helpers";
 
 // async login function, will set localStorage token if successful
 export async function login(user, dispatch) {
-  dispatch({ type: ACTIONS.LOGIN });
-
   try {
     let response = await API.login(user);
     console.log(response.status);
@@ -13,7 +11,7 @@ export async function login(user, dispatch) {
       let token = response.data.access_token;
       let { username, roles } = getUserClaims(token);
       dispatch({
-        type: ACTIONS.LOGIN_SUCCESS,
+        type: ACTIONS.LOGIN,
         payload: { username, roles },
       });
       storeToken(token);
@@ -36,8 +34,6 @@ export const logout = (dispatch) => {
 
 // async registration function, will set localStorage token if successful
 export async function register(user, dispatch) {
-  dispatch({ type: ACTIONS.REGISTER });
-
   try {
     let response = await API.register(user);
 
@@ -45,7 +41,7 @@ export async function register(user, dispatch) {
       let token = response.data.access_token;
       let { username, roles } = getUserClaims(token);
       dispatch({
-        type: ACTIONS.REGISTER_SUCCESS,
+        type: ACTIONS.REGISTER,
         payload: { username, roles },
       });
       storeToken(token);

@@ -51,7 +51,9 @@ export function LoginForm({ dispatch }) {
             <br />
             <Row>
               <Col>
-                <Button type="submit" variant="dark">Login</Button>
+                <Button type="submit" variant="dark">
+                  Login
+                </Button>
               </Col>
             </Row>
           </Form>
