@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
-import { useDispatch } from "../../Store";
+import { useDispatch, useUserState } from "../../Store";
 import { RegistrationForm, LoginForm } from "../../Components/Forms";
 
 export default function Authentication() {
   const [login, setLogin] = useState(true);
   const dispatch = useDispatch();
+  const state = useUserState();
 
   console.log("AUTHPAGE RENDERING...");
   return (
     <>
-      {/* <div className="col d-flex justify-content-center"> */}
       <Container>
         <Row className="justify-content-md-center">
           <Col className="col d-flex justify-content-center">
@@ -49,8 +49,14 @@ export default function Authentication() {
             </Card>
           </Col>
         </Row>
+        <Row className="mt-1">
+          <Col className="col d-flex justify-content-center">
+          <pre>
+            {JSON.stringify(state)}
+          </pre>
+          </Col>
+        </Row>
       </Container>
-      {/* </div> */}
     </>
   );
 }

@@ -5,7 +5,6 @@ export const initialState = {
   isAuthenticated: !!localStorage.getItem("token"),
   username: "",
   roles: [],
-  isLoading: false,
 };
 
 const StateContext = React.createContext();
@@ -13,44 +12,32 @@ const DispatchContext = React.createContext();
 
 function Reducer(state = initialState, action) {
   switch (action.type) {
-    case ACTIONS.LOGIN:
-      return {
-        ...state,
-        isLoading: true,
-      };
     case ACTIONS.LOGOUT:
       return initialState;
+    case ACTIONS.LOGIN:
+      return {
+        isAuthenticated: true,
+        username: action.payload.username,
+        roles: action.payload.roles,
+      };
     case ACTIONS.LOGIN_ERROR:
       return {
         isAuthenticated: false,
-        isLoading: false,
         error: true,
         errorMsg: action.payload.message,
       };
-    case ACTIONS.LOGIN_SUCCESS:
+    case ACTIONS.REGISTER:
       return {
         isAuthenticated: true,
         isLoading: false,
         username: action.payload.username,
         roles: action.payload.roles,
-      };
-    case ACTIONS.REGISTER:
-      return {
-        isLoading: true,
       };
     case ACTIONS.REGISTER_ERROR:
       return {
         isAuthenticated: false,
-        isLoading: false,
         error: true,
         errorMsg: action.payload.message,
-      };
-    case ACTIONS.REGISTER_SUCCESS:
-      return {
-        isAuthenticated: true,
-        isLoading: false,
-        username: action.payload.username,
-        roles: action.payload.roles,
       };
     default:
       return state;
@@ -84,7 +71,7 @@ function useDispatch() {
 
 // Helper function to just unpack state and dispatch
 function useState() {
-  return [useUserState(),useDispatch()];
+  return [useUserState(), useDispatch()];
 }
 
 export { StateProvider, useUserState, useDispatch, useState };

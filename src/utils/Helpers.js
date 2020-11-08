@@ -1,32 +1,10 @@
 import React from "react";
 import { Redirect, Route } from "react-router-dom";
 
-export const PrivateRoute = ({ component, ...rest }) => (
-  <Route
-    {...rest}
-    render={(props) =>
-      localStorage.getItem("token") ? (
-        React.createElement(component, props)
-      ) : (
-        <Redirect
-          to={{
-            pathname: "/auth",
-            state: { from: props.location },
-          }}
-        />
-      )
-    }
-  />
-);
-
-export const storeToken = (token) => {
-  localStorage.setItem("token", token);
-};
-
 export const clearToken = () => {
   if (localStorage.getItem("token")) {
     localStorage.removeItem("token");
-  };
+  }
 };
 
 export const getUserClaims = (token) => {
@@ -35,4 +13,47 @@ export const getUserClaims = (token) => {
   let userClaims = JSON.parse(decoded).user_claims;
 
   return userClaims;
+};
+
+export const storeToken = (token) => {
+  localStorage.setItem("token", token);
+};
+
+export const PrivateRoute = ({ component, ...rest }) => {
+  return (
+    <Route
+      {...rest}
+      render={(props) =>
+        localStorage.getItem("token") ? (
+          React.createElement(component, props)
+        ) : (
+          <Redirect
+            to={{
+              pathname: "/auth",
+              state: { from: props.location },
+            }}
+          />
+        )
+      }
+    />
+  );
+};
+
+export const PublicRoute = ({ component, ...rest }) => {
+  return (
+    <Route
+      {...rest}
+      render={(props) =>
+        localStorage.getItem("token") ? (
+          <Redirect
+            to={{
+              pathname: "/",
+            }}
+          />
+        ) : (
+          React.createElement(component, props)
+        )
+      }
+    />
+  );
 };
