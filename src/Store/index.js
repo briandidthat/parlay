@@ -13,7 +13,10 @@ const DispatchContext = React.createContext();
 function Reducer(state = initialState, action) {
   switch (action.type) {
     case ACTIONS.LOGOUT:
-      return initialState;
+      return {
+        ...state,
+        isAuthenticated: false
+      };
     case ACTIONS.LOGIN:
       return {
         isAuthenticated: true,

@@ -1,10 +1,12 @@
 import React from "react";
 import { Navbar, Nav } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
 import { useState } from "../../Store";
 import { logout } from "../../Store/actions";
 
 export const Header = () => {
   const [state, dispatch] = useState();
+  const history = useHistory();
 
   console.log("HEADER RENDERING...");
   return (
@@ -20,7 +22,7 @@ export const Header = () => {
             <Nav.Link
               eventKey="link1"
               onClick={() => {
-                logout(dispatch);
+                Promise.all([logout(dispatch), history.push("/auth")]);
               }}
             >
               Logout
@@ -32,12 +34,16 @@ export const Header = () => {
   );
 };
 
-export const Footer = () => (
-  <Navbar fixed="bottom" bg="dark" variant="dark">
-    <Nav justify className="m-auto">
-      <Nav.Item>
-        <Navbar.Brand>&copy; Parlay 2020</Navbar.Brand>
-      </Nav.Item>
-    </Nav>
-  </Navbar>
-);
+export const Footer = () => {
+  console.log("FOOTER RENDERING...");
+
+  return (
+    <Navbar fixed="bottom" bg="dark" variant="dark">
+      <Nav justify className="m-auto">
+        <Nav.Item>
+          <Navbar.Brand>&copy; Parlay 2020</Navbar.Brand>
+        </Nav.Item>
+      </Nav>
+    </Navbar>
+  );
+};
