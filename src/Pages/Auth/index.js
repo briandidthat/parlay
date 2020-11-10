@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import { useDispatch, useUserState } from "../../Store";
 import { RegistrationForm, LoginForm } from "../../Components/Forms";
+import { useHistory } from "react-router-dom";
 
 export default function Authentication() {
   const [login, setLogin] = useState(true);
   const dispatch = useDispatch();
   const state = useUserState();
+  const history = useHistory();
 
   console.log("AUTHPAGE RENDERING...");
   return (
@@ -18,9 +20,9 @@ export default function Authentication() {
               <Card.Header as="h5">{login ? "LOGIN" : "REGISTER"}</Card.Header>
               <Card.Body>
                 {login ? (
-                  <LoginForm dispatch={dispatch} />
+                  <LoginForm dispatch={dispatch} history={history} />
                 ) : (
-                  <RegistrationForm dispatch={dispatch} />
+                  <RegistrationForm dispatch={dispatch} history={history}/>
                 )}
               </Card.Body>
             </Card>

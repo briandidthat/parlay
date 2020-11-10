@@ -1,30 +1,20 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { PrivateRoute, PublicRoute } from "./utils/Helpers";
+import { BrowserRouter as Router } from "react-router-dom";
 import { StateProvider } from "./Store";
-import { Auth, Home, Error } from "./Pages";
 import { Footer, Header } from "./Components/Navbar";
+import Routes from "./utils/Routes";
 import "./App.css";
 
-function App() {
+export default function App() {
   return (
-    <>
-      <StateProvider>
+    <StateProvider>
+      <Router>
         <Header />
         <div id="content">
-          <Router>
-            <Switch>
-              <PrivateRoute exact path="/" component={Home} />
-              <PublicRoute exact path="/auth" component={Auth} />
-              <PrivateRoute exact path="/dashboard" type="" component={Error} />
-              <Route component={Error} />
-            </Switch>
-          </Router>
+          <Routes />
         </div>
         <Footer />
-      </StateProvider>
-    </>
+      </Router>
+    </StateProvider>
   );
 }
-
-export default App;
