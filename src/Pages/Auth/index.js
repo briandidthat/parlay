@@ -1,16 +1,14 @@
 import React, { useState } from "react";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
-import { useDispatch, useUserState } from "../../Store";
+import { useDispatch } from "../../Store";
 import { RegistrationForm, LoginForm } from "../../Components/Forms";
 import { useHistory } from "react-router-dom";
 
 export default function Authentication() {
   const [login, setLogin] = useState(true);
   const dispatch = useDispatch();
-  const state = useUserState();
   const history = useHistory();
 
-  console.log("AUTHPAGE RENDERING...");
   return (
     <>
       <Container>
@@ -22,7 +20,7 @@ export default function Authentication() {
                 {login ? (
                   <LoginForm dispatch={dispatch} history={history} />
                 ) : (
-                  <RegistrationForm dispatch={dispatch} history={history}/>
+                  <RegistrationForm dispatch={dispatch} history={history} />
                 )}
               </Card.Body>
             </Card>
@@ -49,13 +47,6 @@ export default function Authentication() {
                 )}
               </Card.Body>
             </Card>
-          </Col>
-        </Row>
-        <Row className="mt-1">
-          <Col className="col d-flex justify-content-center">
-          <pre>
-            {JSON.stringify(state)}
-          </pre>
           </Col>
         </Row>
       </Container>

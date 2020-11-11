@@ -12,13 +12,11 @@ export function LoginForm({ dispatch, history }) {
       validationSchema={LoginSchema}
       validateOnChange={true}
       onSubmit={(values, actions) => {
-        login(values, dispatch)
-          .then(() => {
-            actions.setSubmitting(false);
-          })
-          .then(() => {
-            history.push("/");
-          });
+        login(values, dispatch).then(() => {
+          actions.setSubmitting(false);
+          actions.resetForm();
+          history.push("/");
+        });
       }}
     >
       {({ errors, touched }) => (
@@ -68,7 +66,6 @@ export function LoginForm({ dispatch, history }) {
 }
 
 export function RegistrationForm({ dispatch, history }) {
-  console.log("REGISTERFORM RENDERING...");
   return (
     <Formik
       initialValues={{
@@ -81,13 +78,11 @@ export function RegistrationForm({ dispatch, history }) {
       validateOnChange={true}
       onSubmit={(values, actions) => {
         let { email, username, password } = values;
-        register({ email, username, password }, dispatch)
-          .then(() => {
-            actions.setSubmitting(false);
-          })
-          .then(() => {
-            history.push("/");
-          });
+        register({ email, username, password }, dispatch).then(() => {
+          actions.setSubmitting(false);
+          actions.resetForm();
+          history.push("/");
+        });
       }}
     >
       {({ errors, touched }) => (

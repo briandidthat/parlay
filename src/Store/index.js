@@ -14,8 +14,8 @@ function Reducer(state = initialState, action) {
   switch (action.type) {
     case ACTIONS.LOGOUT:
       return {
-        ...state,
-        isAuthenticated: false
+        ...initialState,
+        isAuthenticated: false,
       };
     case ACTIONS.LOGIN:
       return {
