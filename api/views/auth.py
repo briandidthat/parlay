@@ -54,11 +54,3 @@ def get_users():
     users = User.query.all()
 
     return jsonify(users=[u.serialize() for u in users]), 200
-
-
-# define and register custom error handler for the auth route
-@auth.errorhandler(InvalidUsage)
-def invalid_usage(error):
-    response = jsonify(error.to_dict())
-    response.status_code = error.status_code
-    return response
