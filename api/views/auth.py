@@ -1,5 +1,5 @@
-from api import db
 from models import User, Role
+from api import db, role_required
 from exceptions import InvalidUsage
 from flask import Blueprint, jsonify, request
 from werkzeug.security import check_password_hash
@@ -18,8 +18,7 @@ def login():
 
     if not user or not check_password_hash(user.password, password):
         raise InvalidUsage("Invalid login credentials.", status_code=401)
-    
-    print(user)
+
     access_token = create_access_token(user)
 
     return jsonify(access_token=access_token), 200
@@ -48,7 +47,16 @@ def register():
     return jsonify(access_token=access_token), 201
 
 
-# define and register custom error handler
+
+@auth.route("/users", methods=["GET"])
+@role_required("ADMIN")
+def get_users():
+    users = User.query.all()
+
+    return jsonify(users=[u.serialize() for u in users]), 200
+
+
+# define and register custom error handler for the auth route
 @auth.errorhandler(InvalidUsage)
 def invalid_usage(error):
     response = jsonify(error.to_dict())
