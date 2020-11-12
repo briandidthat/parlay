@@ -1,6 +1,5 @@
 from api import db
 from werkzeug.security import generate_password_hash
-from sqlalchemy.dialects.mysql import UUID
 
 
 class User(db.Model):
@@ -24,7 +23,8 @@ class User(db.Model):
         return {
             "user_id": self.id,
             "email": self.email,
-            "username": self.username
+            "username": self.username,
+            "roles": [role.name for role in self.roles]
         }
 
 

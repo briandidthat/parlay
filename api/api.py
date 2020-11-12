@@ -38,10 +38,9 @@ def create_app():
     return app
 
 
-# custom decorator to enforce role restriction on routes
 def role_required(name):
     def decorator(fn):
-        @wraps
+        @wraps(fn)
         def wrapper(*args, **kwargs):
             verify_jwt_in_request()
             claims = get_jwt_claims()
@@ -51,6 +50,7 @@ def role_required(name):
             return result
         return wrapper
     return decorator
+
 
 
 if __name__ == "__main__":
