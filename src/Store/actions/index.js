@@ -6,7 +6,7 @@ import { clearToken, getUserClaims, storeToken } from "../../utils/Helpers";
 export async function login(user, dispatch) {
   try {
     let response = await API.login(user);
-    console.log(response.status);
+
     if (response.status === 200) {
       let token = response.data.access_token;
       let { username, roles } = getUserClaims(token);
