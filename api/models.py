@@ -1,5 +1,6 @@
-from werkzeug.security import generate_password_hash
 from api import db
+from werkzeug.security import generate_password_hash
+from sqlalchemy.dialects.mysql import UUID
 
 
 class User(db.Model):

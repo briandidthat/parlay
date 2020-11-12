@@ -43,7 +43,7 @@ function PublicRoute({ component, ...rest }) {
 }
 
 const Routes = () => (
-  <Container>
+  <Container fluid>
     <Switch>
       <PrivateRoute exact path="/" component={Home} />
       <PublicRoute exact path="/auth" component={Auth} />

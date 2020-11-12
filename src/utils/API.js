@@ -1,27 +1,55 @@
 import axios from "axios";
 
-// function postWithToken(suffix, data, token) {
-//   return axios.post(suffix, data, {
-//     headers: {
-//       "Content-type": "application/json",
-//       Authorization: `Bearer ${token}`,
-//     },
-//   });
-// }
+function get(suffix, token) {
+  return axios.get(suffix, {
+    headers: {
+      "Content-type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+}
 
-function postWithoutToken(suffix, data) {
+function post(suffix, data, token) {
   return axios.post(suffix, data, {
     headers: {
       "Content-type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+}
+
+function put(suffix, data, token) {
+  return axios.put(suffix, data, {
+    headers: {
+      "Content-type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+}
+
+function remove(suffix, token) {
+  return axios.delete(suffix, {
+    headers: {
+      "Content-type": "application/json",
+      Authorization: `Bearer ${token}`,
     },
   });
 }
 
 export default {
   login: function (user) {
-    return postWithoutToken("/login", user);
+    return post("/login", user);
   },
   register: function (user) {
-    return postWithoutToken("/register", user);
+    return axios.post("/register", user);
+  },
+  deleteUser: function (userId, token) {
+    return remove("/users/remove/" + userId, token);
+  },
+  updateUser: function (user, token) {
+    return put("/users/update", user, token);
+  },
+  getUsers: function (token) {
+    return get("/users/all", token);
   },
 };
