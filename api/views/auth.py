@@ -54,3 +54,15 @@ def get_users():
     users = User.query.all()
 
     return jsonify(users=[u.serialize() for u in users]), 200
+
+
+@auth.route("/users/delete/<int:userid>", methods=["PUT"])
+@role_required("ADMIN")
+def remove_user(user_id):
+    user = User.query.get(user_id)
+
+    if not user:
+        raise InvalidUsage("There is no existing user associated with that id.", status_code=404)
+
+    User.query.delete(user)
+    db.session.commit()
