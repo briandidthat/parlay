@@ -1,5 +1,6 @@
 from functools import wraps
 from flask import Flask, jsonify
+from exceptions import InvalidUsage
 from flask_sqlalchemy import SQLAlchemy
 from flask_jwt_extended import JWTManager, get_jwt_claims, verify_jwt_in_request
 
@@ -20,6 +21,7 @@ def create_app():
     @jwt.user_claims_loader
     def add_claims_to_access_token(user):
         return {
+            "id": user.id,
             "username": user.username,
             "roles": [role.name for role in user.roles]
         }
@@ -27,6 +29,14 @@ def create_app():
     @jwt.user_identity_loader
     def user_identity_lookup(user):
         return user.username
+
+        # define and register custom error handler for the auth route
+    @app.errorhandler(InvalidUsage)
+    def invalid_usage(error):
+        response = jsonify(error.to_dict())
+        response.status_code = error.status_code
+        return response
+
 
     # import views (blueprints) containing routes
     from views import auth, main

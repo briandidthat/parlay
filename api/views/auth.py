@@ -56,9 +56,13 @@ def get_users():
     return jsonify(users=[u.serialize() for u in users]), 200
 
 
-# define and register custom error handler for the auth route
-@auth.errorhandler(InvalidUsage)
-def invalid_usage(error):
-    response = jsonify(error.to_dict())
-    response.status_code = error.status_code
-    return response
+@auth.route("/users/delete/<int:userid>", methods=["PUT"])
+@role_required("ADMIN")
+def remove_user(user_id):
+    user = User.query.get(user_id)
+
+    if not user:
+        raise InvalidUsage("There is no existing user associated with that id.", status_code=404)
+
+    User.query.delete(user)
+    db.session.commit()
