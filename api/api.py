@@ -30,13 +30,12 @@ def create_app():
     def user_identity_lookup(user):
         return user.username
 
-        # define and register custom error handler for the auth route
+    # define and register custom error handler for application
     @app.errorhandler(InvalidUsage)
     def invalid_usage(error):
         response = jsonify(error.to_dict())
         response.status_code = error.status_code
         return response
-
 
     # import views (blueprints) containing routes
     from views import auth, main
@@ -60,7 +59,6 @@ def role_required(name):
             return result
         return wrapper
     return decorator
-
 
 
 if __name__ == "__main__":
