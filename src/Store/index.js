@@ -1,7 +1,7 @@
 import * as ACTIONS from "./actions/types";
 import React from "react";
 
-export const initialState = {
+const initialState = {
   isAuthenticated: !!localStorage.getItem("token"),
   username: "",
   roles: [],
