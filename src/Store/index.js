@@ -1,5 +1,5 @@
-import * as ACTIONS from "./actions/types";
 import React from "react";
+import * as ACTIONS from "./actions/types";
 
 const initialState = {
   isAuthenticated: !!localStorage.getItem("token"),
@@ -14,14 +14,13 @@ function Reducer(state = initialState, action) {
   switch (action.type) {
     case ACTIONS.LOGOUT:
       return {
-        ...initialState,
+        ...state,
         isAuthenticated: false,
       };
     case ACTIONS.LOGIN:
       return {
         isAuthenticated: true,
-        username: action.payload.username,
-        roles: action.payload.roles,
+        ...action.payload,
       };
     case ACTIONS.LOGIN_ERROR:
       return {
@@ -31,10 +30,9 @@ function Reducer(state = initialState, action) {
       };
     case ACTIONS.REGISTER:
       return {
+        ...action.payload,
         isAuthenticated: true,
         isLoading: false,
-        username: action.payload.username,
-        roles: action.payload.roles,
       };
     case ACTIONS.REGISTER_ERROR:
       return {
@@ -42,6 +40,11 @@ function Reducer(state = initialState, action) {
         error: true,
         errorMsg: action.payload.message,
       };
+    case ACTIONS.UPDATE_STATE:
+      return {
+        ...state,
+        ...action.payload,
+      }
     default:
       return state;
   }
@@ -72,9 +75,8 @@ function useDispatch() {
   return context;
 }
 
-// Helper function to just unpack state and dispatch
-function useState() {
+function useSystemState() {
   return [useUserState(), useDispatch()];
 }
 
-export { StateProvider, useUserState, useDispatch, useState };
+export { StateProvider, useUserState, useDispatch, useSystemState };

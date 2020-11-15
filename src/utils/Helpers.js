@@ -15,16 +15,3 @@ export const decodeToken = (token) => {
 
   return userClaims;
 };
-
-export const loadState = () => {
-  try {
-    const serializedState = localStorage.getItem("token");
-    if (serializedState === null) {
-      return undefined;
-    }
-
-    return decodeToken(serializedState);
-  } catch (error) {
-    return undefined;
-  }
-};
