@@ -4,7 +4,11 @@ export const clearToken = () => {
   }
 };
 
-export const getUserClaims = (token) => {
+export const storeToken = (token) => {
+  localStorage.setItem("token", token);
+};
+
+export const decodeToken = (token) => {
   let data = token.split(".")[1];
   let decoded = window.atob(data);
   let userClaims = JSON.parse(decoded).user_claims;
@@ -12,6 +16,15 @@ export const getUserClaims = (token) => {
   return userClaims;
 };
 
-export const storeToken = (token) => {
-  localStorage.setItem("token", token);
+export const loadState = () => {
+  try {
+    const serializedState = localStorage.getItem("token");
+    if (serializedState === null) {
+      return undefined;
+    }
+
+    return decodeToken(serializedState);
+  } catch (error) {
+    return undefined;
+  }
 };

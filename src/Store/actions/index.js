@@ -1,6 +1,6 @@
 import * as ACTIONS from "../actions/types";
 import API from "../../utils/API";
-import { clearToken, getUserClaims, storeToken } from "../../utils/Helpers";
+import { clearToken, decodeToken, storeToken } from "../../utils/Helpers";
 
 // async login function, will set localStorage token if successful
 export async function login(user, dispatch) {
@@ -9,7 +9,7 @@ export async function login(user, dispatch) {
 
     if (response.status === 200) {
       let token = response.data.access_token;
-      let { username, roles } = getUserClaims(token);
+      let { username, roles } = decodeToken(token);
       dispatch({
         type: ACTIONS.LOGIN,
         payload: { username, roles },
@@ -39,7 +39,7 @@ export async function register(user, dispatch) {
 
     if (response.status === 200) {
       let token = response.data.access_token;
-      let { username, roles } = getUserClaims(token);
+      let { username, roles } = decodeToken(token);
       dispatch({
         type: ACTIONS.REGISTER,
         payload: { username, roles },

@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import { useDispatch } from "../../Store";
-import { RegistrationForm, LoginForm } from "../../Components/Forms";
 import { useHistory } from "react-router-dom";
+import { Button, Card, Col, Container, Row } from "react-bootstrap";
+import { RegistrationForm, LoginForm } from "../../Components/Forms";
+
 
 export default function Authentication() {
   const [login, setLogin] = useState(true);

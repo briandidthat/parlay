@@ -43,8 +43,11 @@ export default {
   register: function (user) {
     return axios.post("/register", user);
   },
-  deleteUser: function (userId, token) {
-    return remove("/users/remove/" + userId, token);
+  getUser: function (id, token) {
+    return get("/users/get-user/" + id, token);
+  },
+  deleteUser: function (id, token) {
+    return remove("/users/remove/" + id, token);
   },
   updateUser: function (user, token) {
     return put("/users/update", user, token);
@@ -54,5 +57,5 @@ export default {
   },
   loadHome: function (token) {
     return get("/home", token);
-  }
+  },
 };

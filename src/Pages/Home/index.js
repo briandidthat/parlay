@@ -1,20 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Card, Container } from "react-bootstrap";
-import { useUserState } from "../../Store";
-import API from "../../utils/API";
+import { loadState } from "../../utils/Helpers";
 
 export default function Home() {
-  const state = useUserState();
-
-  useEffect(() => {
-    API.loadHome(localStorage.getItem("token"))
-      .then((vals) => {
-        console.log(vals.data);
-      })
-      .catch((err) => {
-        alert(JSON.stringify(err.message, null, 2));
-      });
-  }, []);
+  const state = loadState();
 
   return (
     <Container>
