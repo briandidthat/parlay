@@ -1,9 +1,14 @@
-import React from "react";
-import { loadState } from "../../Store/actions";
+import React, { useEffect } from "react";
+import { useSystemState } from "../../Store";
 import { Card, Container } from "react-bootstrap";
+import { LOAD_STATE } from "../../Store/actions/types";
 
 export default function Home() {
-  const state = loadState();
+  const [state, dispatch] = useSystemState();
+
+  useEffect(() => {
+    dispatch({ type: LOAD_STATE });
+  }, [dispatch]);
 
   return (
     <Container>

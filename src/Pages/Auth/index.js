@@ -4,7 +4,6 @@ import { useHistory } from "react-router-dom";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import { RegistrationForm, LoginForm } from "../../Components/Forms";
 
-
 export default function Authentication() {
   const [login, setLogin] = useState(true);
   const dispatch = useDispatch();
