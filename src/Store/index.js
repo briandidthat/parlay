@@ -1,4 +1,5 @@
 import React from "react";
+import { loadState } from "./actions";
 import * as ACTIONS from "./actions/types";
 
 const initialState = {
@@ -40,10 +41,11 @@ function Reducer(state = initialState, action) {
         error: true,
         errorMsg: action.payload.message,
       };
-    case ACTIONS.UPDATE_STATE:
+    case ACTIONS.LOAD_STATE:
+      const systemState = loadState();
       return {
         ...state,
-        ...action.payload,
+        ...systemState,
       }
     default:
       return state;
