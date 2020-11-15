@@ -1,5 +1,5 @@
-import * as ACTIONS from "../actions/types";
 import API from "../../utils/API";
+import * as ACTIONS from "../actions/types";
 import { clearToken, decodeToken, storeToken } from "../../utils/Helpers";
 
 // async login function, will set localStorage token if successful
@@ -9,10 +9,10 @@ export async function login(user, dispatch) {
 
     if (response.status === 200) {
       let token = response.data.access_token;
-      let { username, roles } = decodeToken(token);
+
       dispatch({
         type: ACTIONS.LOGIN,
-        payload: { username, roles },
+        payload: { ...decodeToken(token) },
       });
       storeToken(token);
     }
@@ -26,12 +26,6 @@ export async function login(user, dispatch) {
   }
 }
 
-// logout function will destroy
-export const logout = (dispatch) => {
-  clearToken();
-  dispatch({ type: ACTIONS.LOGOUT });
-};
-
 // async registration function, will set localStorage token if successful
 export async function register(user, dispatch) {
   try {
@@ -39,10 +33,9 @@ export async function register(user, dispatch) {
 
     if (response.status === 200) {
       let token = response.data.access_token;
-      let { username, roles } = decodeToken(token);
       dispatch({
         type: ACTIONS.REGISTER,
-        payload: { username, roles },
+        payload: { ...decodeToken(token) },
       });
       storeToken(token);
     }
@@ -55,3 +48,22 @@ export async function register(user, dispatch) {
     alert(JSON.stringify(error.message));
   }
 }
+
+// logout function will destroy localstorage token
+export const logout = (dispatch) => {
+  clearToken();
+  dispatch({ type: ACTIONS.LOGOUT });
+};
+
+// get state values from access token
+export const loadState = () => {
+  try {
+    const serializedState = localStorage.getItem("token");
+    if (serializedState === null) {
+      return undefined;
+    }
+    return decodeToken(serializedState);
+  } catch (error) {
+    return undefined;
+  }
+};

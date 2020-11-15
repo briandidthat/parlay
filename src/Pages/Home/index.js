@@ -1,6 +1,6 @@
 import React from "react";
+import { loadState } from "../../Store/actions";
 import { Card, Container } from "react-bootstrap";
-import { loadState } from "../../utils/Helpers";
 
 export default function Home() {
   const state = loadState();

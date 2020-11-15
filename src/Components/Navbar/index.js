@@ -1,14 +1,13 @@
 import React from "react";
 import { Navbar, Nav } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
-import { useState } from "../../Store";
+import { useSystemState } from "../../Store";
 import { logout } from "../../Store/actions";
 
 export const Header = () => {
-  const [state, dispatch] = useState();
+  const [state, dispatch] = useSystemState();
   const history = useHistory();
 
-  console.log("HEADER RENDERING...");
   return (
     <Navbar fixed="top" bg="dark" variant="dark" expand="lg">
       <Navbar.Brand>Parlay</Navbar.Brand>
@@ -35,8 +34,6 @@ export const Header = () => {
 };
 
 export const Footer = () => {
-  console.log("FOOTER RENDERING...");
-
   return (
     <Navbar fixed="bottom" bg="dark" variant="dark">
       <Nav justify className="m-auto">
