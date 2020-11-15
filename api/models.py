@@ -12,7 +12,8 @@ class User(db.Model):
     email = db.Column(db.String(100), unique=True, nullable=False)
     username = db.Column(db.String(100), unique=True, nullable=False)
     password = db.Column(db.String(100), nullable=False)
-    roles = db.relationship('Role', secondary="user_role", lazy="select", backref=db.backref('user', lazy=True))
+    roles = db.relationship('Role', secondary="user_role",
+                            lazy="select", backref=db.backref('user', lazy=True))
 
     def __init__(self, email, username, password):
         self.email = email

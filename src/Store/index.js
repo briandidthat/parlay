@@ -42,11 +42,11 @@ function Reducer(state = initialState, action) {
         errorMsg: action.payload.message,
       };
     case ACTIONS.LOAD_STATE:
-      const systemState = loadState();
+      let systemState = loadState();
       return {
         ...state,
         ...systemState,
-      }
+      };
     default:
       return state;
   }
