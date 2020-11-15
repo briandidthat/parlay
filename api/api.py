@@ -21,7 +21,6 @@ def create_app():
     @jwt.user_claims_loader
     def add_claims_to_access_token(user):
         return {
-            "id": user.id,
             "username": user.username,
             "roles": [role.name for role in user.roles]
         }
