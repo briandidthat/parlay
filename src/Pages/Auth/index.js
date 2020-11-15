@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch } from "../../Store";
 import { useHistory } from "react-router-dom";
-import { Button, Card, Col, Container, Row } from "react-bootstrap";
+import { Button, Card, Col, Container, Row, Image } from "react-bootstrap";
 import { RegistrationForm, LoginForm } from "../../Components/Forms";
+import { spade } from "../../assets";
 
 export default function Authentication() {
   const [login, setLogin] = useState(true);
@@ -17,6 +18,7 @@ export default function Authentication() {
             <Card className="text-center">
               <Card.Header as="h5">{login ? "LOGIN" : "REGISTER"}</Card.Header>
               <Card.Body>
+                <Image src={spade} thumbnail width="150" />
                 {login ? (
                   <LoginForm dispatch={dispatch} history={history} />
                 ) : (

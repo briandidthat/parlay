@@ -22,9 +22,8 @@ export function LoginForm({ dispatch, history }) {
       {({ errors, touched }) => (
         <Container fluid style={{ textAlign: "center" }}>
           <Form>
-            <Row>
+            <Row className="mt-2">
               <Col>
-                <label htmlFor="username">Username</label>
                 <Field
                   name="username"
                   placeholder="username"
@@ -36,9 +35,8 @@ export function LoginForm({ dispatch, history }) {
                 ) : null}
               </Col>
             </Row>
-            <Row>
+            <Row className="mt-1">
               <Col>
-                <label htmlFor="password">Password</label>
                 <Field
                   name="password"
                   placeholder="password"
@@ -50,8 +48,7 @@ export function LoginForm({ dispatch, history }) {
                 ) : null}
               </Col>
             </Row>
-            <br />
-            <Row>
+            <Row className="mt-2">
               <Col>
                 <Button type="submit" variant="dark">
                   Login
@@ -88,9 +85,8 @@ export function RegistrationForm({ dispatch, history }) {
       {({ errors, touched }) => (
         <Container fluid>
           <Form>
-            <Row>
+            <Row className="mt-2">
               <Col>
-                <label htmlFor="email">Email</label>
                 <Field
                   name="email"
                   placeholder="email"
@@ -102,9 +98,8 @@ export function RegistrationForm({ dispatch, history }) {
                 ) : null}
               </Col>
             </Row>
-            <Row>
+            <Row className="mt-1">
               <Col>
-                <label htmlFor="username">Username</label>
                 <Field
                   name="username"
                   placeholder="username"
@@ -116,9 +111,8 @@ export function RegistrationForm({ dispatch, history }) {
                 ) : null}
               </Col>
             </Row>
-            <Row>
+            <Row className="mt-1">
               <Col>
-                <label htmlFor="password">Password</label>
                 <Field
                   name="password"
                   placeholder="password"
@@ -130,13 +124,12 @@ export function RegistrationForm({ dispatch, history }) {
                 ) : null}
               </Col>
             </Row>
-            <Row>
+            <Row className="mt-1">
               <Col>
-                <label htmlFor="confirm">Confirm</label>
                 <Field
                   label="Confirm"
                   name="confirmPassword"
-                  placeholder="confirm"
+                  placeholder="confirm password"
                   type="password"
                   id="confirm"
                 />
@@ -145,8 +138,7 @@ export function RegistrationForm({ dispatch, history }) {
                 ) : null}
               </Col>
             </Row>
-            <br />
-            <Row>
+            <Row className="mt-2">
               <Col>
                 <Button type="submit" variant="dark">
                   Register

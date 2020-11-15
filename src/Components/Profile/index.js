@@ -1,15 +1,25 @@
 import React from "react";
-import { Card, Container } from "react-bootstrap";
-import { useUserState } from "../../Store";
+import { loadState } from "../../Store/actions";
+import { Col, Card, Image, Row } from "react-bootstrap";
+import { snake } from "../../assets";
 
-export default function Profile() {
-  const state = useUserState();
+const Profile = React.memo(() => {
+  const state = loadState();
 
   return (
-    <Container>
-      <Card className="text-center">
-        <pre>{JSON.stringify(state, null, 2)}</pre>
+    <Col md={4} className="mb-3">
+      <Card>
+        <Card.Body>
+          <Col className="d-flex flex-column align-items-center text-center">
+            <Image src={snake} roundedCircle width="150" />
+            <Row className="mt-3">
+              <h4>{state.username}</h4>
+            </Row>
+          </Col>
+        </Card.Body>
       </Card>
-    </Container>
+    </Col>
   );
-}
+});
+
+export default Profile;
