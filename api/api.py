@@ -13,35 +13,37 @@ def create_app():
     app = Flask(__name__)
     app.config.from_object('config.DevelopmentConfig')
 
-    db.init_app(app)
+    with app.app_context():
+        db.init_app(app)
 
-    jwt = JWTManager(app)
+        jwt = JWTManager(app)
 
-    # will allow us to pass userId and roles via the token
-    @jwt.user_claims_loader
-    def add_claims_to_access_token(user):
-        return {
-            "username": user.username,
-            "roles": [role.name for role in user.roles]
-        }
+        # will allow us to pass userId and roles via the token
+        @jwt.user_claims_loader
+        def add_claims_to_access_token(user):
+            return {
+                "username": user.username,
+                "roles": [role.name for role in user.roles]
+            }
 
-    @jwt.user_identity_loader
-    def user_identity_lookup(user):
-        return user.username
+        @jwt.user_identity_loader
+        def user_identity_lookup(user):
+            return user.username
 
-    # define and register custom error handler for application
-    @app.errorhandler(InvalidUsage)
-    def invalid_usage(error):
-        response = jsonify(error.to_dict())
-        response.status_code = error.status_code
-        return response
+        # define and register custom error handler for application
+        @app.errorhandler(InvalidUsage)
+        def invalid_usage(error):
+            response = jsonify(error.to_dict())
+            response.status_code = error.status_code
+            return response
 
-    # import views (blueprints) containing routes
-    from views import auth, main
+        # import views (blueprints) containing routes
+        from views import auth, main, nyt
 
-    # register blueprints
-    app.register_blueprint(auth)
-    app.register_blueprint(main)
+        # register blueprints
+        app.register_blueprint(auth)
+        app.register_blueprint(main)
+        app.register_blueprint(nyt)
 
     return app
 
