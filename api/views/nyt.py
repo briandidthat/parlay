@@ -1,5 +1,7 @@
-from flask import Blueprint, Response, current_app, jsonify
 import requests
+from exceptions import InvalidUsage
+from flask import Blueprint, Response, current_app, jsonify
+
 
 nyt = Blueprint("nyt", __name__)
 
@@ -25,5 +27,11 @@ def with_key(url: str, domain: str, suffix: str = None) -> str:
 
 @nyt.route("/api/books/")
 def get_best_sellers():
-    r = requests.get(with_key(books_url, "NYT"))
-    return jsonify(data=r.json()), 200
+    try:
+        r = requests.get(with_key(books_url, "NYT"))
+        if r.status_code != 200:
+            raise InvalidUsage(str(r), status_code=r.status_code)
+
+        return jsonify(data=r.json()), 200
+    except requests.exceptions.RequestException as e:
+        raise Exception(e)

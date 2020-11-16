@@ -1,4 +1,5 @@
 from functools import wraps
+from flask_cors import CORS
 from flask import Flask, jsonify
 from exceptions import InvalidUsage
 from flask_sqlalchemy import SQLAlchemy
@@ -18,6 +19,8 @@ def create_app():
 
         jwt = JWTManager(app)
 
+        CORS(app)
+        
         # will allow us to pass userId and roles via the token
         @jwt.user_claims_loader
         def add_claims_to_access_token(user):
