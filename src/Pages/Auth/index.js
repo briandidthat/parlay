@@ -1,9 +1,9 @@
+import { spade } from "../../assets";
 import React, { useState } from "react";
 import { useDispatch } from "../../Store";
 import { useHistory } from "react-router-dom";
 import { Button, Card, Col, Container, Row, Image } from "react-bootstrap";
 import { RegistrationForm, LoginForm } from "../../Components/Forms";
-import { spade } from "../../assets";
 
 export default function Authentication() {
   const [login, setLogin] = useState(true);
