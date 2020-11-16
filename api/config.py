@@ -23,3 +23,6 @@ class DevelopmentConfig(Config):
     DEBUG = True
     SQLALCHEMY_DATABASE_URI = 'sqlite:///test.db'
     SQLALCHEMY_TRACK_MODIFICATIONS =  False
+    NYT_API_KEY = environ.get('NYT_API_KEY')
+    NYT_BOOKS_URL = environ.get('NYT_BOOKS_URL')
+    NYT_ARTICLES_URL = environ.get('NYT_ARTICLES_URL')

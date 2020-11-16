@@ -1,12 +1,10 @@
 import React from "react";
-import { Card, Col, Spinner } from "react-bootstrap";
-// import { Col, ListGroup, Row } from "react-bootstrap";
 import useSWR from "swr";
-import { BOOK_URL as url } from "../../utils/constants";
 import { BookList } from "./BookList";
+import { Card, Col, Spinner } from "react-bootstrap";
 
 export default function BookDisplay() {
-  const { data, error } = useSWR(url, { refreshInterval: 0 });
+  const { data, error } = useSWR('/api/books', { refreshInterval: 0 });
   if (error) return "ERROR";
 
   if (!data) return <Spinner />;
