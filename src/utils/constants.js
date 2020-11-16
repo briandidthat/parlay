@@ -1,0 +1,1 @@
+export const BOOK_URL = `${process.env.REACT_APP_NYT_BOOKS_URL}?api-key=${process.env.REACT_APP_NYT_API_KEY}`;
