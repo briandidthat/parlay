@@ -1,10 +1,14 @@
 from functools import wraps
 from flask_cors import CORS
+from flask_caching import Cache
 from flask import Flask, jsonify
 from exceptions import InvalidUsage
 from flask_sqlalchemy import SQLAlchemy
 from flask_jwt_extended import JWTManager, get_jwt_claims, verify_jwt_in_request
 
+
+# create cache
+cache = Cache()
 
 # instantiate db
 db = SQLAlchemy()
@@ -15,12 +19,14 @@ def create_app():
     app.config.from_object('config.DevelopmentConfig')
 
     with app.app_context():
+        cache.init_app(app)
+
         db.init_app(app)
 
         jwt = JWTManager(app)
 
         CORS(app)
-        
+
         # will allow us to pass userId and roles via the token
         @jwt.user_claims_loader
         def add_claims_to_access_token(user):

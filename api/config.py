@@ -26,3 +26,5 @@ class DevelopmentConfig(Config):
     NYT_API_KEY = environ.get('NYT_API_KEY')
     NYT_BOOKS_URL = environ.get('NYT_BOOKS_URL')
     NYT_ARTICLES_URL = environ.get('NYT_ARTICLES_URL')
+    CACHE_TYPE = "simple"
+    CACHE_DEFAULT_TIMEOUT = 300
