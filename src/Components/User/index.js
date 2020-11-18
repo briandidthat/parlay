@@ -7,7 +7,7 @@ export const Profile = React.memo(() => {
   const user = React.useMemo(() => loadState(), []);
 
   return (
-    <Col md={4} className="mb-3">
+    <Col md={5} className="mb-3">
       <Card>
         <Card.Body>
           <Col className="d-flex flex-column align-items-center text-center">

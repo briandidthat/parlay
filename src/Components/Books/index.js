@@ -15,10 +15,10 @@ export default function BookDisplay() {
 
   console.log(data.results)
   return (
-    <Col md={8}>
-      <Card className="mb-3">
+    <Col md={7}>
+      <Card className="mb-3" style={{ height: "32rem"}}>
         <Card.Header className="text-center">NYT BestSellers</Card.Header>
-        <Card.Body>
+        <Card.Body style={{ overflowY: "scroll"}}>
           <BookList list={data.results} />
         </Card.Body>
       </Card>

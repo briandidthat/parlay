@@ -30,7 +30,7 @@ def with_key(url: str, domain: str, suffix: str = None) -> str:
 @nyt.route("/api/books/best-sellers")
 def get_best_sellers():
     try:
-        # check if books are already cached, if so we will return it
+        # check if books are already cached, if so we will return them 
         books = cache.get("books")
         if books is None:  # if books is not in cache, make the api request and cache the results
             r = requests.get(with_key(books_url, "NYT"))

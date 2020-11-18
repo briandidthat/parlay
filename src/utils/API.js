@@ -55,7 +55,4 @@ export default {
   getUsers: function (token) {
     return get("/users/all", token);
   },
-  loadHome: function (token) {
-    return get("/home", token);
-  },
 };
