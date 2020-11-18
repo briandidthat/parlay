@@ -32,6 +32,7 @@ def get_best_sellers():
     try:
         # check if books are already cached, if so we will return them 
         books = cache.get("books")
+        print("returning from cache")
         if books is None:  # if books is not in cache, make the api request and cache the results
             r = requests.get(with_key(books_url, "NYT"))
             if r.status_code != 200:  # anything other than a 200 should return an exception to user

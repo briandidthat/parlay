@@ -9,10 +9,18 @@ const Book = React.memo(({ book }) => {
           <h6 className="mb-1">Title: {book.title}</h6>
           <h6 className="mb-1">Author: {book.author}</h6>
           <h6 className="mb-1">Description: {book.description} </h6>
-          <h6 className="mb-1">Amazon Product: {book.amazon_product_url}</h6>
+          <h6 className="mb-1">
+            <a
+              href={book.amazon_product_url}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Buy on Amazon
+            </a>
+          </h6>
         </Col>
-        <Col sm={6}>
-          <Image src={book.book_image} width="150" />
+        <Col className="text-right" sm={6}>
+          <Image src={book.book_image} width="140" />
         </Col>
       </Row>
     </ListGroup.Item>
