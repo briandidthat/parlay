@@ -4,6 +4,7 @@ import BookDisplay from "../../Components/Books";
 import Profile from "../../Components/User";
 
 export default function Home() {
+
   return (
       <Row>
         <Profile />

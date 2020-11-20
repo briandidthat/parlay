@@ -1,6 +1,10 @@
+from flask import json
+from werkzeug.exceptions import HTTPException
+
+
 class InvalidUsage(Exception):
-    """ 
-    Custom exception clas that will receive the error message, status_code, and payload.
+    """
+    Custom exception class that will receive the error message, status_code, and payload. It will have a 400 error by default
     - to_dict() will return dictionary representation of error object.
     """
     status_code = 400
@@ -14,6 +18,5 @@ class InvalidUsage(Exception):
 
     def to_dict(self):
         rv = dict(self.payload or ())
-        rv['message'] = self.message 
-        rv['status_code'] = self.status_code
+        rv['message'] = self.message
         return rv

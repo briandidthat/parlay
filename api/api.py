@@ -4,6 +4,7 @@ from flask_caching import Cache
 from flask import Flask, jsonify
 from exceptions import InvalidUsage
 from flask_sqlalchemy import SQLAlchemy
+from werkzeug.exceptions import HTTPException
 from flask_jwt_extended import JWTManager, get_jwt_claims, verify_jwt_in_request
 
 

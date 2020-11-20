@@ -13,7 +13,7 @@ export default function BookDisplay() {
   // During loading state, show spinner. Should only show the first time the page is rendered due to caching
   if (!data)
     return (
-      <Col  className="text-center"md={7}>
+      <Col className="text-center" md={7}>
         <Spinner animation="border" size="md" />
       </Col>
     );

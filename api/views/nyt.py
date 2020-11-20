@@ -2,7 +2,7 @@ import json
 import requests
 from api import cache
 from exceptions import InvalidUsage
-from flask import Blueprint, Response, current_app, jsonify
+from flask import Blueprint, Response, current_app, jsonify, abort
 
 
 nyt = Blueprint("nyt", __name__)
@@ -30,9 +30,8 @@ def with_key(url: str, domain: str, suffix: str = None) -> str:
 @nyt.route("/api/books/best-sellers")
 def get_best_sellers():
     try:
-        # check if books are already cached, if so we will return them 
+        # check if books are already cached, if so we will return them
         books = cache.get("books")
-        print("returning from cache")
         if books is None:  # if books is not in cache, make the api request and cache the results
             r = requests.get(with_key(books_url, "NYT"))
             if r.status_code != 200:  # anything other than a 200 should return an exception to user
@@ -51,3 +50,4 @@ def get_best_sellers():
         return jsonify(results=books), 200
     except requests.exceptions.RequestException as e:
         raise Exception(e)
+    
